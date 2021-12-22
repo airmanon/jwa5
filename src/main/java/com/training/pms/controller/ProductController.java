@@ -56,7 +56,7 @@ public class ProductController {
 		}
 		else
 		{
-			responseEntity = new ResponseEntity<>(products, HttpStatus.FOUND);
+			responseEntity = new ResponseEntity<>(products, HttpStatus.OK);
 		}
 		return responseEntity;
 	}
@@ -75,7 +75,7 @@ public class ProductController {
 			if (message.equals("Product not updated successfully (Reason - Price or QOH is negative )")) {
 				responseEntity = new ResponseEntity<>(message, HttpStatus.NOT_ACCEPTABLE);
 			} else {
-				responseEntity = new ResponseEntity<>(message, HttpStatus.ACCEPTED);
+				responseEntity = new ResponseEntity<>(message, HttpStatus.OK);
 			}
 		}
 		return responseEntity;
