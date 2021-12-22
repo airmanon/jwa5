@@ -53,6 +53,16 @@ class ProductappSpringAppRevatureJwaApplicationTestsProduct {
 	}
 	
 	@Test
+	@DisplayName("Testing save Product - CONFLICT")
+	@Order(2)
+	public void saveProduct2()
+	{
+		Product product = new Product(productId, "MoonPlushie", 99, 9);
+		ResponseEntity<String> responseEntity = restTemplate.postForEntity(url.toString(), product, String.class);
+		assertEquals(HttpStatus.CONFLICT, responseEntity.getStatusCode());
+	}
+	
+	@Test
 	@DisplayName("Testing get Products - FOUND")
 	@Order(3)
 	public void getProducts1()
@@ -60,4 +70,25 @@ class ProductappSpringAppRevatureJwaApplicationTestsProduct {
 		ResponseEntity<List> responseEntity = restTemplate.getForEntity(url.toString(), List.class);
 		assertEquals(HttpStatus.FOUND, responseEntity.getStatusCode());
 	}
+	
+//	@Test
+//	@DisplayName("Testing delete Product - OK")
+//	@Order(4)
+//	public void deleteProduct()
+//	{
+//		ResponseEntity<String> responseEntity = restTemplate.(baseURL, productId, String.class);
+//		//Product product = new Product(productId, "MoonPlushie", 99, 9);
+//		//ResponseEntity<String> responseEntity = restTemplate.postForEntity(url.toString(), product, String.class);
+//		assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+//	}
+//	
+//	@Test
+//	@DisplayName("Testing delete Product - NOT_FOUND")
+//	@Order(5)
+//	public void deleteProduct2()
+//	{
+//		Product product = new Product(productId, "MoonPlushie", 99, 9);
+//		ResponseEntity<String> responseEntity = restTemplate.postForEntity(url.toString(), product, String.class);
+//		assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
+//	}
 }
